@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "sources": ["reuse.ts"],
+  "sourcesContent": [
+    "const reuseSymbol = Symbol(\"reuse\");\n\nexport const reuse = <T>(container: any, value: T): T => {\n\tif (reuseSymbol in container) {\n\t\treturn container[reuseSymbol];\n\t}\n\n\tObject.defineProperty(container, reuseSymbol, {\n\t\tvalue,\n\t\twritable: false,\n\t\tenumerable: false,\n\t\tconfigurable: false,\n\t});\n\n\treturn value;\n};\n"
+  ],
+  "mappings": "AAAA,IAAM,EAAc,OAAO,OAAO,EAErB,EAAQ,CAAI,EAAgB,IAAgB,CACxD,GAAI,KAAe,EAClB,OAAO,EAAU,GAUlB,OAPA,OAAO,eAAe,EAAW,EAAa,CAC7C,QACA,SAAU,GACV,WAAY,GACZ,aAAc,EACf,CAAC,EAEM",
+  "debugId": "987FCAB9D74D186164756E2164756E21",
+  "names": []
+}

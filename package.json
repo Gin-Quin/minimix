@@ -1,0 +1,22 @@
+{
+	"name": "@gin-quin/minimix",
+	"module": "index.ts",
+	"type": "module",
+	"version": "1.0.1",
+	"scripts": {
+		"build": "bun build library/*.ts --minify --sourcemap --outdir library",
+		"test": "bun test",
+		"deploy": "bun run build && bun run test && bun publish --access=public --allow-dirty && bun x jsr publish --allow-dirty"
+	},
+	"main": "./library/index.js",
+	"exports": {
+		".": "./library/index.js",
+		"./*": "./library/*.js"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "^1.9.4",
+		"@types/bun": "latest",
+		"gzip-size": "^7.0.0",
+		"ts-mixer": "^6.0.4"
+	}
+}

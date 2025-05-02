@@ -1,0 +1,9 @@
+{
+	"name": "@gin-quin/minimix",
+	"version": "1.0.1",
+	"license": "MIT",
+	"exports": {
+		".": "./library/index.js",
+		"./reuse": "./library/reuse.js"
+	}
+}
