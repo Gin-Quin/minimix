@@ -2,9 +2,9 @@
   "version": 3,
   "sources": ["reuse.ts"],
   "sourcesContent": [
-    "const reuseSymbol = Symbol(\"reuse\");\n\nexport const reuse = <T>(container: any, value: T): T => {\n\tif (reuseSymbol in container) {\n\t\treturn container[reuseSymbol];\n\t}\n\n\tObject.defineProperty(container, reuseSymbol, {\n\t\tvalue,\n\t\twritable: false,\n\t\tenumerable: false,\n\t\tconfigurable: false,\n\t});\n\n\treturn value;\n};\n"
+    "/**\n * @module reuse\n *\n * Provides utilities for reusing values within objects, preventing unnecessary\n * re-creation of values and ensuring consistent references across multiple accesses.\n *\n * This module is particularly useful for:\n * - Caching computed values\n * - Ensuring singleton-like behavior within objects\n * - Preventing duplicate initialization\n *\n * @example\n * ```typescript\n * const container = {};\n * const value = reuse(container, new ExpensiveObject());\n * // Subsequent calls will return the same instance\n * const sameValue = reuse(container, new ExpensiveObject());\n * ```\n */\n\nconst reuseSymbol = Symbol(\"reuse\");\n\n/**\n * Stores a value in a container and reuse it on subsequent calls.\n * @param container - The container to reuse the value in.\n * @param value - The value to reuse.\n * @returns The reused value.\n */\nexport const reuse = <T>(container: any, value: T): T => {\n\tif (reuseSymbol in container) {\n\t\treturn container[reuseSymbol];\n\t}\n\n\tObject.defineProperty(container, reuseSymbol, {\n\t\tvalue,\n\t\twritable: false,\n\t\tenumerable: false,\n\t\tconfigurable: false,\n\t});\n\n\treturn value;\n};\n"
   ],
-  "mappings": "AAAA,IAAM,EAAc,OAAO,OAAO,EAErB,EAAQ,CAAI,EAAgB,IAAgB,CACxD,GAAI,KAAe,EAClB,OAAO,EAAU,GAUlB,OAPA,OAAO,eAAe,EAAW,EAAa,CAC7C,QACA,SAAU,GACV,WAAY,GACZ,aAAc,EACf,CAAC,EAEM",
-  "debugId": "987FCAB9D74D186164756E2164756E21",
+  "mappings": "AAoBA,IAAM,EAAc,OAAO,OAAO,EAQrB,EAAQ,CAAI,EAAgB,IAAgB,CACxD,GAAI,KAAe,EAClB,OAAO,EAAU,GAUlB,OAPA,OAAO,eAAe,EAAW,EAAa,CAC7C,QACA,SAAU,GACV,WAAY,GACZ,aAAc,EACf,CAAC,EAEM",
+  "debugId": "AD15255FCF446C5E64756E2164756E21",
   "names": []
 }

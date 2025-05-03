@@ -1,9 +1,11 @@
 {
 	"name": "@gin-quin/minimix",
-	"version": "1.0.1",
+	"version": "1.0.3",
 	"license": "MIT",
+	"description": "The best mixin library for TypeScript.",
 	"exports": {
-		".": "./library/index.js",
-		"./reuse": "./library/reuse.js"
-	}
+		".": "./library/index.ts",
+		"./reuse": "./library/reuse.ts"
+	},
+	"include": ["library"]
 }

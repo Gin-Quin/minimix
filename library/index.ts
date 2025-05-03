@@ -1,4 +1,27 @@
 /**
+ * @module minimix
+ *
+ * A powerful TypeScript mixin library that enables multiple inheritance and composition
+ * of classes while maintaining proper type safety and prototype chain integrity.
+ *
+ * This module provides utilities for:
+ * - Creating mixins from multiple constructors
+ * - Preserving static properties and methods
+ * - Maintaining proper prototype chains
+ * - Type-safe composition of classes
+ *
+ * @example
+ * ```typescript
+ * class A { a() { return 'a'; } }
+ * class B { b() { return 'b'; } }
+ * const Mixed = Mix(A, B);
+ * const instance = new Mixed();
+ * instance.a(); // 'a'
+ * instance.b(); // 'b'
+ * ```
+ */
+
+/**
  * Type representing a constructor function that can be either concrete or abstract
  */
 type Constructor =
