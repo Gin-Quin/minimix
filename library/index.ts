@@ -110,12 +110,16 @@ export function Mix<Constructors extends Array<Constructor>>(
 		static [mixOf] = constructors;
 
 		constructor(...parameters: any[]) {
-			super(...parameters[0]);
+			if (parameters.length) {
+				super(...parameters[0]);
+			} else {
+				super();
+			}
 
-			constructors.slice(1).forEach((nextConstructor, index) => {
+			parameters.slice(1).forEach((nextParameters, index) => {
 				Object.assign(
 					this,
-					new (nextConstructor as any)(...parameters[index + 1]),
+					new (constructors[index + 1] as any)(...nextParameters),
 				);
 			});
 		}
