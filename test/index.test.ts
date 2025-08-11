@@ -5,6 +5,8 @@ import { reuse } from "../library/reuse";
 describe("Minimix", () => {
 	// Basic mixin functionality
 	class Foo {
+		constructor(public name = "foo") {}
+
 		makeFoo() {
 			return "foo";
 		}
@@ -155,7 +157,7 @@ describe("Minimix", () => {
 		expect(num).toBe(42);
 	});
 
-	test("Primitive type mixing", () => {
+	test("Array mixing", () => {
 		const customArray = new CustomArray(1, 2, 3);
 		expect(Array.isArray(customArray)).toBe(true);
 		expect(customArray.length).toBe(3);
@@ -166,6 +168,8 @@ describe("Minimix", () => {
 		expect(customArray.length).toBe(4);
 		expect(customArray[3]).toEqual(4);
 		expect(customArray.makeCustomArray()).toBe("foo");
+		const clonedArray = customArray.slice(1, 2);
+		expect(clonedArray).toBeInstanceOf(CustomArray);
 	});
 
 	test("Abstract class", () => {

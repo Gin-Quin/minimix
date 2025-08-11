@@ -110,9 +110,9 @@ For this, make sure the primitive type should be passed as the first argument to
 ```typescript
 class CustomArray extends Mix(Array<number>, SomeClass) {
     // The result is a regular array with additional functionality
-    constructor() {
+    constructor(...values: Array<number>) {
         super(
-            [1, 2, 3], // Array constructor parameters
+            values, // Array constructor parameters
             [], // SomeClass constructor parameters
         );
     }
@@ -121,6 +121,13 @@ class CustomArray extends Mix(Array<number>, SomeClass) {
 const customArray = new CustomArray();
 console.log(customArray); // [1, 2, 3]
 ```
+
+⚠️ If possible, the extended class should have the same constructor signature as the primitive type! Otherwise, it can cause issues, when using methods like `slice`, that call the constructor expecting the wrong arguments.
+
+There are two ways to avoid this:
+
+1. Make sure the extended class has the same constructor signature as the primitive type.
+2. Overwrite all methods that call the constructor, like `slice`.
 
 ### Mixing Generic Classes
 
@@ -160,7 +167,7 @@ const FooBarFactory = <T1, T2>() => class FooBar extends Mix(Foo<T1>, Bar<T2>) {
 
 This has two drawbacks:
 
-1. a new class is created for each call, 
+1. a new class is created for each call,
 2. you have to call the factory function to get the class, which hurts the developer experience.
 
 To solve the first issue, we can use the `reuse` utility function, that will memoize the class:
